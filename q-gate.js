@@ -151,8 +151,8 @@ module.exports = function(RED) {
                         break;
                     case 'queueing':
                         node.status({fill:'yellow',shape:'ring',text:'queuing: ' + queue.length});
-                        var newMsg = { payload: queue.length };                // Changed, added lne
-                        node.send([null,newMsg])                               // Changed, added lne, 2nd output
+                        var newMsg = { payload: queue.length };                // Changed, added line
+                        node.send([null,newMsg])                               // Changed, added line, 2nd output
                     }
             
                 node.send(null);                     
