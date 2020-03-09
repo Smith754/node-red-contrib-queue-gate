@@ -63,7 +63,8 @@ module.exports = function(RED) {
                 break;
             case 'queueing':
 //                node.status(queueingStatus);
-                queueStatus.text = 'queuing: ' + queue.length;
+                queueStatus.text = 'queuing: ' + queue.length;                                         
+
                 queueStatus.shape = (queue.length < node.maxQueueLength) ? 'ring':'dot';
                 node.status(queueStatus);
                 break;
@@ -118,7 +119,7 @@ module.exports = function(RED) {
                         if (state === 'queueing') {
                         // Dequeue
                         if (queue.length > 0) {
-                            node.send(queue.shift());
+                            node.send(queue.shift());                                  
                             }
                         }
                         break;
@@ -150,8 +151,11 @@ module.exports = function(RED) {
                         break;
                     case 'queueing':
                         node.status({fill:'yellow',shape:'ring',text:'queuing: ' + queue.length});
+                        var newMsg = { payload: queue.length };                                    // Changed, added lne
+                        node.send([null,newMsg])                                                   // Changed, added lne, 2nd output
                     }
-                node.send(null);
+            
+                node.send(null);                     
             } else {
                 // Process message
                 switch (state) {
@@ -171,9 +175,11 @@ module.exports = function(RED) {
                             queue.shift();
                             }
                         }
-                        queueStatus.text = 'queuing: ' + queue.length;
+                        queueStatus.text = 'queuing: ' + queue.length;                        
                         queueStatus.shape = (queue.length < node.maxQueueLength) ? 'ring':'dot';
                         node.status(queueStatus);
+                        var newMsg = { payload: queue.length };                                    // Changed, added line
+                        node.send([null,newMsg])                                                   // Changed, added line, 2nd output
                         break;
                     default:
                         node.error('Invalid state');
