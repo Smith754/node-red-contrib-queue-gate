@@ -1,5 +1,6 @@
 # node-red-contrib-queue-gate
-A Node-RED node for controlling message flow, with queueing capability. I modified just a few lines of code from the original so that this node has a second output. When in que mode the second output will spit out a number showing how many items are in the que, everytime something is added to the que. It makes this node infinitely more useful. 
+A Node-RED node for controlling message flow, with queueing capability. I modified just a few lines of code from the original so that this node has a second output. When in que mode the second output will spit out a number showing how many items are in the que, everytime something is added to the que. It makes this node infinitely more useful. The only files changed were: q-gate.html and 
+q-gate.js. You can just copy these over your installed version if you like.
 
 ## Install
 
